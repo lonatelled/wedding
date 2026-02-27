@@ -110,9 +110,20 @@ ul.timing {
 .zigzag-block.reverse { flex-direction: row-reverse; }
 .zigzag-img { width: 45%; border-radius: 10px; margin: 10px; }
 .zigzag-text { width: 50%; color: #fff; text-align: left; margin: 10px; }
+.zigzag-text h2, .zigzag-text p { text-shadow: 1px 1px 4px rgba(0,0,0,0.7); }
+
 @media screen and (max-width: 768px){
   .zigzag-block, .zigzag-block.reverse { flex-direction: column; text-align: center; }
   .zigzag-img, .zigzag-text { width: 90%; }
+}
+
+/* Компактные секции: Чат и Анкета */
+#chat .overlay, #rsvp .overlay {
+    padding: 30px 20px;
+}
+
+#chat, #rsvp {
+    padding: 40px 20px;
 }
 </style>
 </head>
@@ -155,7 +166,7 @@ ul.timing {
   </div>
 </section>
 
-<!-- Чат гостей (без лесенки) -->
+<!-- Чат гостей (без лесенки, компактная) -->
 <section id="chat" style="background-color:#555;">
   <div class="overlay">
     <h2>Чат гостей</h2>
@@ -163,7 +174,7 @@ ul.timing {
   </div>
 </section>
 
-<!-- Подтвердите присутствие (без лесенки) -->
+<!-- Подтвердите присутствие (без лесенки, компактная) -->
 <section id="rsvp" style="background-color:#666;">
   <div class="overlay">
     <h2>Подтвердите присутствие</h2>
