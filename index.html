@@ -11,7 +11,7 @@ body {
     text-align: center;
 }
 
-/* Общие стили секций */
+/* Общие секции */
 section {
     padding: 60px 20px;
     background-size: cover;
@@ -21,7 +21,6 @@ section {
     margin-bottom: 0;
 }
 
-/* Overlay */
 .overlay {
     background-color: rgba(0,0,0,0.4);
     padding: 60px 20px;
@@ -35,7 +34,7 @@ h1 { font-size: 40px; margin-bottom: 10px; }
 h2 { font-size: 28px; margin-top: 30px; }
 p { font-size: 18px; line-height: 1.5; }
 
-/* Списки тайминга */
+/* Тайминг список */
 ul.timing {
     list-style: none;
     padding-left: 0;
@@ -50,13 +49,14 @@ ul.timing {
     display: inline-block;
     margin: 15px;
     padding: 12px 25px;
-    color: #333;
+    color: #fff;
     text-decoration: none;
     border-radius: 5px;
     transition: background 0.3s;
 }
 .button-chat { background: #1a73e8; }
 .button-form { background: #34a853; }
+.button-gifts { background: #fbbc05; }
 .button:hover { background: #222; }
 
 /* Галерея */
@@ -73,38 +73,40 @@ ul.timing {
     border: 2px solid #fff;
     transition: transform 0.3s;
 }
-.gallery img:hover {
-    transform: scale(1.05);
-}
+.gallery img:hover { transform: scale(1.05); }
 
-/* Отдельный стиль для галереи */
-.section-gallery {
-    background-color: #333;
-    color: #fff;
-}
+/* Секции */
+.section-gallery { background-color: #333; color: #fff; }
+.section-map iframe { width: 100%; height: 450px; border:0; }
 
-/* Яндекс-Карта */
-.section-map iframe {
-    width: 100%;
-    height: 450px;
-    border: 0;
-}
+/* Анимация fade-in */
+.fade-in { opacity: 0; transform: translateY(20px); animation: fadeInUp 1s forwards; }
+@keyframes fadeInUp { to { opacity:1; transform: translateY(0); } }
+
 </style>
 </head>
 <body>
 
 <!-- Главная секция -->
 <section style="background-image: url('111.jpg');">
-  <div class="overlay">
+  <div class="overlay fade-in">
     <h1>Даниил & Дарья</h1>
     <p>Мы счастливы пригласить вас на нашу свадьбу!</p>
     <h2>25 августа 2026</h2>
   </div>
 </section>
 
+<!-- Таймер -->
+<section style="background-color:#555;">
+  <div class="overlay fade-in">
+    <h2>До свадьбы осталось:</h2>
+    <div id="countdown" style="font-size:28px;"></div>
+  </div>
+</section>
+
 <!-- Тайминг -->
-<section style="background-color:#333;">
-  <div class="overlay">
+<section style="background-color:#444;">
+  <div class="overlay fade-in">
     <h2>Тайминг</h2>
     <ul class="timing">
       <li>11:30-12:00 Трансфер от ст.метро «Партизанская»</li>
@@ -118,33 +120,33 @@ ul.timing {
 </section>
 
 <!-- Чат гостей -->
-<section style="background-color:#333;">
-  <div class="overlay">
+<section style="background-color:#555;">
+  <div class="overlay fade-in">
     <h2>Чат гостей</h2>
     <a class="button button-chat" href="https://t.me/ваш_чат" target="_blank">Перейти в чат</a>
   </div>
 </section>
 
 <!-- Подтвердите присутствие -->
-<section style="background-color:#333;">
-  <div class="overlay">
+<section style="background-color:#666;">
+  <div class="overlay fade-in">
     <h2>Подтвердите присутствие</h2>
     <a class="button button-form" href="https://forms.gle/ваша_форма" target="_blank">Заполнить анкету</a>
   </div>
 </section>
-    
+
 <!-- Место проведения с Яндекс-Картой -->
 <section class="section-map" style="background-image: url('bg2.jpg'); background-size: cover; background-position: center;">
-  <div class="overlay" style="background-color:#333;">
+  <div class="overlay fade-in" style="background-color: rgba(0,0,0,0.4);">
     <h2>Место проведения</h2>
-    <p>Минская область, Солигорский район, Старобинский сельсовет, деревня Летенец, Школьная улица, 2Б</p>
+    <p>Минская область, Солигорский район, деревня Летенец, Школьная улица, 2Б</p>
     <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Ae60c609200addee4ac853a35e6ad03d385a15af465eb564b0fb860bb7da946ae&amp;source=constructor"></iframe>
   </div>
 </section>
-    
+
 <!-- Галерея -->
 <section class="section-gallery">
-  <div class="overlay" style="background-color:#333; padding:40px 20px;">
+  <div class="overlay fade-in" style="background-color: rgba(0,0,0,0.2); padding:40px 20px;">
     <h2>Галерея</h2>
     <div class="gallery">
       <img src="file1.jpg" alt="Фото 1">
@@ -154,6 +156,48 @@ ul.timing {
     </div>
   </div>
 </section>
+
+<!-- Наша история -->
+<section style="background-color:#777;">
+  <div class="overlay fade-in">
+    <h2>Наша история</h2>
+    <p>Мы познакомились в 2018 году, и с тех пор пережили множество удивительных моментов вместе…</p>
+    <img src="us.jpg" alt="Мы" style="width:300px; border-radius:10px;">
+  </div>
+</section>
+
+<!-- Подарки -->
+<section style="background-color:#555;">
+  <div class="overlay fade-in">
+    <h2>Подарки</h2>
+    <p>Если хотите сделать подарок, вот наш список желаний и реквизиты:</p>
+    <a class="button button-gifts" href="https://example.com/gifts" target="_blank">Список подарков</a>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="background-color:#666;">
+  <div class="overlay fade-in">
+    <h2>FAQ</h2>
+    <p><strong>Дресс-код:</strong> Элегантная классика в пастельных тонах</p>
+    <p><strong>Парковка:</strong> На территории клуба есть бесплатная парковка</p>
+    <p><strong>Проживание:</strong> Ближайшие гостиницы — 10 минут на машине</p>
+  </div>
+</section>
+
+<script>
+// Таймер до свадьбы
+const weddingDate = new Date("August 25, 2026 15:00:00").getTime();
+const countdownEl = document.getElementById("countdown");
+setInterval(() => {
+  const now = new Date().getTime();
+  const distance = weddingDate - now;
+  const days = Math.floor(distance / (1000*60*60*24));
+  const hours = Math.floor((distance % (1000*60*60*24))/(1000*60*60));
+  const minutes = Math.floor((distance % (1000*60*60))/(1000*60));
+  countdownEl.innerHTML = `${days}д ${hours}ч ${minutes}м`;
+}, 1000);
+</script>
 
 </body>
 </html>
