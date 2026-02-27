@@ -8,13 +8,17 @@
 body {
     margin: 0;
     font-family: 'Georgia', serif;
+    text-align: center;
     scroll-behavior: smooth;
-    background-color:#eee;
+    background-color: #222;
+    color: #fff;
 }
 
-/* Общие секции */
+/* Общие секции с анимацией */
 section {
     padding: 60px 20px;
+    background-size: cover;
+    background-position: center;
     position: relative;
     margin-bottom: 0;
     opacity: 0;
@@ -25,8 +29,10 @@ section.show { opacity: 1; transform: translateY(0) scale(1); }
 
 /* Overlay */
 .overlay {
-    padding: 40px 20px;
-    max-width: 900px;
+    background-color: rgba(0,0,0,0.4);
+    padding: 60px 20px;
+    border-radius: 10px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 .overlay > * {
@@ -39,91 +45,236 @@ section.show .overlay > *:nth-child(2) { opacity:1; transform:translateY(0); tra
 section.show .overlay > *:nth-child(3) { opacity:1; transform:translateY(0); transition-delay:0.5s; }
 section.show .overlay > *:nth-child(4) { opacity:1; transform:translateY(0); transition-delay:0.7s; }
 
-/* Главная секция в рамке */
-#home-block {
-    background-color: #555;
-    border: 3px solid #fff;
+/* Главная секция */
+#home { margin-top: 0; }
+#home .overlay { 
     border-radius: 30px;
-    color: #fff;
-    margin-top: 60px;
-    padding: 40px 20px;
-    text-align: center;
+    border: 3px solid #fff;
+    background-color: #555;
 }
-#home-block h1 { font-size: 48px; margin: 10px 0; }
-#home-block h2 { font-size: 36px; margin: 10px 0; }
-#home-block p { font-size: 20px; margin: 10px 0; }
+#home h1 { font-size: 44px; }
+#home h2 { font-size: 32px; }
+#home p { font-size: 20px; line-height: 1.6; }
 
-/* Блок с картинкой слева */
+/* Заголовки и текст */
+h1 { font-size: 40px; margin-bottom: 10px; }
+h2 { font-size: 28px; margin-top: 30px; }
+p { font-size: 18px; line-height: 1.5; }
+
+/* Тайминг список */
+ul.timing {
+    list-style: none;
+    padding-left: 0;
+    text-align: left;
+    display: inline-block;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+/* Кнопки */
+.button {
+    display: inline-block;
+    margin: 15px;
+    padding: 12px 25px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+.button-chat { background: #fff; color:#555; }
+.button-form { background: #34a853; }
+.button-gifts { background: #fbbc05; }
+.button:hover { background: #222; }
+
+/* Галерея мозаикой */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.gallery img {
+    margin: 5px;
+    width: calc(33% - 10px);
+    height: auto;
+    border-radius: 15px;
+    border: 2px solid #fff;
+    transform: rotate(-2deg);
+    transition: transform 0.3s;
+}
+.gallery img:hover { transform: rotate(0deg) scale(1.05); }
+
+/* Секции */
+.section-gallery { background-color: #333; color: #fff; }
+.section-map iframe { width: 100%; height: 450px; border:0; }
+
+/* Лесенка */
 .zigzag-block {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
   margin-bottom: 60px;
+  flex-wrap: wrap;
 }
 .zigzag-block.reverse { flex-direction: row-reverse; }
-.zigzag-img { width: 45%; border-radius: 10px; margin: 10px; }
-.zigzag-text { width: 50%; text-align: left; margin: 10px; color: #fff; }
-.zigzag-text h2 { font-size: 32px; margin-bottom: 15px; }
-.zigzag-text p { font-size: 18px; line-height: 1.5; }
-
-/* Галерея */
-.gallery { display: flex; flex-wrap: wrap; justify-content: center; }
-.gallery img { margin: 5px; width: calc(33% - 10px); border-radius: 15px; border: 2px solid #fff; transform: rotate(-2deg); transition: transform 0.3s;}
-.gallery img:hover { transform: rotate(0deg) scale(1.05); }
-
-/* Кнопка для чата */
-.button {
-    display: inline-block;
-    padding: 12px 25px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    margin-top: 15px;
-    transition: all 0.3s;
-}
-.button-chat-custom { background-color: #fff; color: #555; border: 2px solid #fff; }
-.button-chat-custom:hover { background-color: #ddd; }
+.zigzag-img { width: 45%; border-radius: 10px; margin: 10px; transform: translateY(-20px); }
+.zigzag-text { width: 50%; color: #fff; text-align: left; margin: 10px; }
+.zigzag-text h2, .zigzag-text p { text-shadow: 1px 1px 4px rgba(0,0,0,0.7); }
 
 @media screen and (max-width: 768px){
   .zigzag-block, .zigzag-block.reverse { flex-direction: column; text-align: center; }
   .zigzag-img, .zigzag-text { width: 90%; }
 }
+
+/* Компактные секции: Чат и Анкета */
+#chat .overlay, #rsvp .overlay { padding: 30px 20px; }
+#chat, #rsvp { padding: 40px 20px; }
+
+/* Уменьшенная высота для Тайминга и Локации */
+#schedule, #map { padding: 40px 20px; }
+#schedule .overlay, #map .overlay { padding: 30px 20px; }
+
+/* Волнистые разделители */
+section + section::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 50px;
+    background: white;
+    clip-path: polygon(0 0, 100% 30%, 100% 100%, 0 70%);
+    position: absolute;
+    top: -50px;
+}
 </style>
 </head>
 <body>
 
-<!-- Главная секция с рамкой -->
-<section id="home">
-  <div class="overlay" id="home-block">
+<!-- Главная секция -->
+<section id="home" style="background-image: url('111.jpg');">
+  <div class="overlay">
     <h1>Даниил | Дарья</h1>
     <h2>18 июля 2026</h2>
-    <p>Приглашение на свадьбу</p>
-    <div id="countdown" style="font-size:36px; font-weight:bold;"></div>
+    <p>ДОРОГИЕ ГОСТИ!
+Один день в этом году будет для нас особенным, и мы хотим провести его в кругу близких людей. С большим удовольствием приглашаем Вас на знаменательный праздник - нашу свадьбу.</p>
+    <div id="countdown" style="font-size:36px; color:#ffd700; font-weight:bold; margin-top:20px;"></div>
   </div>
 </section>
 
-<!-- Блок "Дорогие гости" с картинкой -->
-<section style="background-color:#666;">
+<!-- Тайминги (лесенка с пояснениями трансфера) -->
+<section id="schedule" style="background-image: url('file3.jpg'); background-size: cover; background-position: center;">
+  <div class="overlay" style="background-color: rgba(0,0,0,0.3);">
+    <div class="zigzag-block">
+      <img src="file3.jpg" alt="Тайминг" class="zigzag-img">
+      <div class="zigzag-text">
+        <h2>ТАЙМИНГИ</h2>
+        <p>Здесь вы найдете расписание мероприятий на весь день. Просим всех гостей ознакомиться заранее, чтобы ничего не пропустить.</p>
+        <ul class="timing">
+          <li>11:30-12:00 ТРАНСФЕР
+            <p>Мы организуем трансфер от станции метро «Партизанская», который доставит вас прямо к месту проведения мероприятия.</p>
+          </li>
+          <li>14:00 - 15:00 СБОР ГОСТЕЙ 
+          <p>Время пролетит незаметно за игристым и общением с другими гостями.</p>
+          </li>
+          <li>16:00 DЫЕЗДНАЯ ЦЕРЕМОНИЯ
+            <p>Мы будем рады разделить с вами важный момент создания нашей семьи.</p>
+          </li>
+          <li>17:00 БАНКЕТ
+              <p>На праздничном ужине будет не только вкусно, но и очень весело. В программе вечера запланировано много танцев, развлечений и поздравлений.</p>
+          </li>
+          <li>23:00 ЗАВЕРШЕНИЕ ПРАЗДНИКА
+              <p>Надеемся, этот праздник принесет вам массу положительных эмоций и запомнится на долгое время.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Дорогие гости (лесенка) -->
+<section id="welcome" style="background-color:#444;">
   <div class="overlay">
     <div class="zigzag-block">
-      <img src="111.jpg" alt="Дорогие гости" class="zigzag-img">
+      <img src="welcome.jpg" alt="Дорогие гости" class="zigzag-img">
       <div class="zigzag-text">
-        <h2>Дорогие гости!</h2>
-        <p>Дорогие друзья и родные, будем рады видеть вас на нашем празднике, чтобы разделить этот важный день вместе с нами.</p>
+        <h2>ДОРОГИЕ ГОСТИ</h2>
+        <p>Дорогие друзья! Мы хотим, чтобы каждый из вас почувствовал себя комфортно на нашем празднике, поэтому подготовили всю необходимую информацию заранее.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- Чат гостей -->
-<section style="background-color:#555;">
-  <div class="overlay">
+<section id="chat">
+  <div class="overlay" style="background-color:#fff; color:#000; text-align:left; position:relative;">
     <h2>ЧАТ ДЛЯ ГОСТЕЙ</h2>
-    <div style="background-color:#888; color:#fff; padding:20px; border-radius:15px; margin-top:20px;">
-      <p>Дорогие друзья, мы создали telegram чат нашего праздника, где можно будет узнать дополнительную информацию, поделиться фотографиями и видео со свадьбы, а также ближе познакомиться с гостями.</p>
+    <p>Дорогие друзья, мы создали telegram чат нашего праздника, где можно будет узнать дополнительную информацию, поделиться фотографиями и видео со свадьбы, а также ближе познакомиться с гостями.</p>
+    <a class="button button-chat" href="https://t.me/ваш_чат" style="position:absolute; right:20px; bottom:20px;">Перейти в чат</a>
+  </div>
+</section>
+
+<!-- Подтвердите присутствие -->
+<section id="rsvp" style="background-color:#666;">
+  <div class="overlay">
+    <h2>Подтвердите присутствие</h2>
+    <a class="button button-form" href="https://forms.gle/ваша_форма">Заполнить анкету</a>
+  </div>
+</section>
+
+<!-- Место проведения -->
+<section id="map" class="section-map" style="background-image: url('file2.jpg'); background-size: cover; background-position: center;">
+  <div class="overlay" style="background-color: rgba(0,0,0,0.4);">
+    <div class="zigzag-block reverse">
+      <div class="zigzag-text">
+        <h2>Место проведения</h2>
+        <p>Минская область, Солигорский район, деревня Летенец, Школьная улица, 2Б</p>
+        <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Ae60c609200addee4ac853a35e6ad03d385a15af465eb564b0fb860bb7da946ae&amp;source=constructor"></iframe>
+      </div>
+      <img src="location.jpg" alt="Место проведения" class="zigzag-img">
     </div>
-    <a class="button button-chat-custom" href="https://t.me/ваш_чат">Перейти в чат</a>
+  </div>
+</section>
+
+<!-- Галерея -->
+<section id="gallery" class="section-gallery">
+  <div class="overlay" style="background-color: rgba(0,0,0,0.2); padding:40px 20px;">
+    <div class="zigzag-block">
+      <img src="gallery-cover.jpg" alt="Галерея" class="zigzag-img">
+      <div class="zigzag-text">
+        <h2>Галерея</h2>
+        <p>Небольшая подборка наших любимых фотографий с разных событий.</p>
+        <div class="gallery">
+          <img src="file1.jpg" alt="Фото 1">
+          <img src="photo2.jpg" alt="Фото 2">
+          <img src="photo3.jpg" alt="Фото 3">
+          <img src="photo4.jpg" alt="Фото 4">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- История -->
+<section id="story" style="background-color:#777;">
+  <div class="overlay" style="background-color: rgba(0,0,0,0.3); padding:40px;">
+    <div class="zigzag-block reverse">
+      <div class="zigzag-text">
+        <h2>Наша история</h2>
+        <p>Мы познакомились в 2018 году, и с тех пор пережили множество удивительных моментов вместе…</p>
+      </div>
+      <img src="us.jpg" alt="Мы" class="zigzag-img">
+    </div>
+  </div>
+</section>
+
+<!-- Пожелания -->
+<section id="wishes" style="background-color:#555;">
+  <div class="overlay">
+    <div class="zigzag-block">
+      <img src="gifts.jpg" alt="Пожелания" class="zigzag-img">
+      <div class="zigzag-text">
+        <h2>ПОЖЕЛАНИЯ</h2>
+        <p>Мы будем рады любым вашим тёплым словам, пожеланиям и мыслям, которые вы хотели бы разделить с нами в этот день.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -142,7 +293,7 @@ setInterval(() => {
   countdownEl.innerHTML = `${days}д ${hours}ч ${minutes}м ${seconds}с`;
 }, 1000);
 
-// Анимация
+// Анимация при скролле
 const sections = document.querySelectorAll('section');
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => { if(entry.isIntersecting){ entry.target.classList.add('show'); }});
