@@ -12,7 +12,7 @@ body {
     scroll-behavior: smooth;
 }
 
-/* Общие секции с начальной невидимостью и сдвигом */
+/* Общие секции с анимацией при скролле */
 section {
     padding: 60px 20px;
     background-size: cover;
@@ -25,7 +25,6 @@ section {
     transition: opacity 1s ease, transform 1s ease;
 }
 
-/* Показываем секцию при скролле */
 section.show {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -39,13 +38,12 @@ section.show {
     margin: 0 auto;
 }
 
-/* Анимация поочередного появления элементов overlay */
+/* Анимация элементов overlay поочерёдно */
 .overlay > * {
     opacity: 0;
     transform: translateY(20px);
     transition: all 0.8s ease;
 }
-
 section.show .overlay > *:nth-child(1) { opacity:1; transform:translateY(0); transition-delay:0.1s; }
 section.show .overlay > *:nth-child(2) { opacity:1; transform:translateY(0); transition-delay:0.3s; }
 section.show .overlay > *:nth-child(3) { opacity:1; transform:translateY(0); transition-delay:0.5s; }
@@ -101,6 +99,21 @@ ul.timing {
 .section-gallery { background-color: #333; color: #fff; }
 .section-map iframe { width: 100%; height: 450px; border:0; }
 
+/* Лесенка */
+.zigzag-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 60px;
+  flex-wrap: wrap;
+}
+.zigzag-block.reverse { flex-direction: row-reverse; }
+.zigzag-img { width: 45%; border-radius: 10px; margin: 10px; }
+.zigzag-text { width: 50%; color: #fff; text-align: left; margin: 10px; }
+@media screen and (max-width: 768px){
+  .zigzag-block, .zigzag-block.reverse { flex-direction: column; text-align: center; }
+  .zigzag-img, .zigzag-text { width: 90%; }
+}
 </style>
 </head>
 <body>
@@ -122,22 +135,27 @@ ul.timing {
   </div>
 </section>
 
-<!-- Тайминг -->
+<!-- Тайминг (лесенка: картинка слева) -->
 <section id="schedule" style="background-color:#444;">
   <div class="overlay">
-    <h2>Тайминг</h2>
-    <ul class="timing">
-      <li>11:30-12:00 Трансфер от ст.метро «Партизанская»</li>
-      <li>14:00 Заезд гостей</li>
-      <li>15:00 Фуршет</li>
-      <li>16:00 Церемония / дарение подарков</li>
-      <li>17:00 Банкет</li>
-      <li>23:00 Конец мероприятия</li>
-    </ul>
+    <div class="zigzag-block">
+      <img src="schedule.jpg" alt="Тайминг" class="zigzag-img">
+      <div class="zigzag-text">
+        <h2>Тайминг</h2>
+        <ul class="timing">
+          <li>11:30-12:00 Трансфер от ст.метро «Партизанская»</li>
+          <li>14:00 Заезд гостей</li>
+          <li>15:00 Фуршет</li>
+          <li>16:00 Церемония / дарение подарков</li>
+          <li>17:00 Банкет</li>
+          <li>23:00 Конец мероприятия</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- Чат гостей -->
+<!-- Чат гостей (без лесенки) -->
 <section id="chat" style="background-color:#555;">
   <div class="overlay">
     <h2>Чат гостей</h2>
@@ -145,7 +163,7 @@ ul.timing {
   </div>
 </section>
 
-<!-- Подтвердите присутствие -->
+<!-- Подтвердите присутствие (без лесенки) -->
 <section id="rsvp" style="background-color:#666;">
   <div class="overlay">
     <h2>Подтвердите присутствие</h2>
@@ -153,53 +171,63 @@ ul.timing {
   </div>
 </section>
 
-<!-- Место проведения с Яндекс-Картой -->
+<!-- Место проведения (лесенка: картинка справа) -->
 <section id="map" class="section-map" style="background-image: url('bg2.jpg'); background-size: cover; background-position: center;">
   <div class="overlay" style="background-color: rgba(0,0,0,0.4);">
-    <h2>Место проведения</h2>
-    <p>Минская область, Солигорский район, деревня Летенец, Школьная улица, 2Б</p>
-    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Ae60c609200addee4ac853a35e6ad03d385a15af465eb564b0fb860bb7da946ae&amp;source=constructor"></iframe>
-  </div>
-</section>
-
-<!-- Галерея -->
-<section id="gallery" class="section-gallery">
-  <div class="overlay" style="background-color: rgba(0,0,0,0.2); padding:40px 20px;">
-    <h2>Галерея</h2>
-    <div class="gallery">
-      <img src="file1.jpg" alt="Фото 1">
-      <img src="photo2.jpg" alt="Фото 2">
-      <img src="photo3.jpg" alt="Фото 3">
-      <img src="photo4.jpg" alt="Фото 4">
+    <div class="zigzag-block reverse">
+      <div class="zigzag-text">
+        <h2>Место проведения</h2>
+        <p>Минская область, Солигорский район, деревня Летенец, Школьная улица, 2Б</p>
+        <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Ae60c609200addee4ac853a35e6ad03d385a15af465eb564b0fb860bb7da946ae&amp;source=constructor"></iframe>
+      </div>
+      <img src="location.jpg" alt="Место проведения" class="zigzag-img">
     </div>
   </div>
 </section>
 
-<!-- Наша история -->
-<section id="story" style="background-color:#777;">
-  <div class="overlay">
-    <h2>Наша история</h2>
-    <p>Мы познакомились в 2018 году, и с тех пор пережили множество удивительных моментов вместе…</p>
-    <img src="us.jpg" alt="Мы" style="width:300px; border-radius:10px;">
+<!-- Галерея (лесенка: картинка слева) -->
+<section id="gallery" class="section-gallery">
+  <div class="overlay" style="background-color: rgba(0,0,0,0.2); padding:40px 20px;">
+    <div class="zigzag-block">
+      <img src="gallery-cover.jpg" alt="Галерея" class="zigzag-img">
+      <div class="zigzag-text">
+        <h2>Галерея</h2>
+        <p>Небольшая подборка наших любимых фотографий с разных событий.</p>
+        <div class="gallery">
+          <img src="file1.jpg" alt="Фото 1">
+          <img src="photo2.jpg" alt="Фото 2">
+          <img src="photo3.jpg" alt="Фото 3">
+          <img src="photo4.jpg" alt="Фото 4">
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- Подарки -->
+<!-- История (лесенка: картинка справа) -->
+<section id="story" style="background-color:#777;">
+  <div class="overlay" style="background-color: rgba(0,0,0,0.3); padding:40px;">
+    <div class="zigzag-block reverse">
+      <div class="zigzag-text">
+        <h2>Наша история</h2>
+        <p>Мы познакомились в 2018 году, и с тех пор пережили множество удивительных моментов вместе…</p>
+      </div>
+      <img src="us.jpg" alt="Мы" class="zigzag-img">
+    </div>
+  </div>
+</section>
+
+<!-- Подарки (лесенка: картинка слева) -->
 <section id="gifts" style="background-color:#555;">
   <div class="overlay">
-    <h2>Подарки</h2>
-    <p>Если хотите сделать подарок, вот наш список желаний и реквизиты:</p>
-    <a class="button button-gifts" href="https://example.com/gifts">Список подарков</a>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section id="faq" style="background-color:#666;">
-  <div class="overlay">
-    <h2>FAQ</h2>
-    <p><strong>Дресс-код:</strong> Элегантная классика в пастельных тонах</p>
-    <p><strong>Парковка:</strong> На территории клуба есть бесплатная парковка</p>
-    <p><strong>Проживание:</strong> Ближайшие гостиницы — 10 минут на машине</p>
+    <div class="zigzag-block">
+      <img src="gifts.jpg" alt="Подарки" class="zigzag-img">
+      <div class="zigzag-text">
+        <h2>Подарки</h2>
+        <p>Если хотите сделать подарок, вот наш список желаний и реквизиты:</p>
+        <a class="button button-gifts" href="https://example.com/gifts">Список подарков</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -211,30 +239,19 @@ const countdownEl = document.getElementById("countdown");
 setInterval(() => {
   const now = new Date().getTime();
   const distance = weddingDate - now;
-
-  if (distance < 0) {
-    countdownEl.innerHTML = "Свадьба уже состоялась!";
-    return;
-  }
-
+  if (distance < 0) { countdownEl.innerHTML = "Свадьба уже состоялась!"; return; }
   const days = Math.floor(distance / (1000*60*60*24));
   const hours = Math.floor((distance % (1000*60*60*24))/(1000*60*60));
   const minutes = Math.floor((distance % (1000*60*60))/(1000*60));
   const seconds = Math.floor((distance % (1000*60))/1000);
-
   countdownEl.innerHTML = `${days}д ${hours}ч ${minutes}м ${seconds}с`;
 }, 1000);
 
 // Анимация при скролле
 const sections = document.querySelectorAll('section');
 const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      entry.target.classList.add('show');
-    }
-  });
+  entries.forEach(entry => { if(entry.isIntersecting){ entry.target.classList.add('show'); }});
 }, {threshold: 0.2});
-
 sections.forEach(section => observer.observe(section));
 </script>
 
