@@ -11,14 +11,13 @@ body {
     text-align: center;
     scroll-behavior: smooth;
     background-color: #222;
-    color: #fff;
+    color: #000;
 }
 
 /* Общие секции с анимацией */
 section {
     padding: 60px 20px;
-    background-size: cover;
-    background-position: center;
+    background-color: rgba(200,200,200,0.2); /* единый полупрозрачный фон */
     position: relative;
     margin-bottom: 0;
     opacity: 0;
@@ -29,11 +28,12 @@ section.show { opacity: 1; transform: translateY(0) scale(1); }
 
 /* Overlay */
 .overlay {
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(200,200,200,0.2); /* полупрозрачный единый фон */
     padding: 60px 20px;
     border-radius: 10px;
     max-width: 1000px;
     margin: 0 auto;
+    color: #000;
 }
 .overlay > * {
     opacity: 0;
@@ -50,16 +50,16 @@ section.show .overlay > *:nth-child(4) { opacity:1; transform:translateY(0); tra
 #home .overlay { 
     border-radius: 30px;
     border: 3px solid #fff;
-    background-color: #555;
+    background-color: rgba(200,200,200,0.1); /* более прозрачный серый */
 }
 #home h1 { font-size: 44px; }
 #home h2 { font-size: 32px; }
-#home p { font-size: 20px; line-height: 1.6; }
+#home p { font-size: 20px; line-height: 1.6; color:#000; }
 
 /* Заголовки и текст */
-h1 { font-size: 40px; margin-bottom: 10px; }
-h2 { font-size: 28px; margin-top: 30px; }
-p { font-size: 18px; line-height: 1.5; }
+h1 { font-size: 40px; margin-bottom: 10px; color:#000; }
+h2 { font-size: 28px; margin-top: 30px; color:#000; }
+p { font-size: 18px; line-height: 1.5; color:#000; }
 
 /* Тайминг список */
 ul.timing {
@@ -69,6 +69,7 @@ ul.timing {
     display: inline-block;
     font-size: 18px;
     line-height: 1.6;
+    color:#000;
 }
 
 /* Кнопки */
@@ -103,10 +104,6 @@ ul.timing {
 }
 .gallery img:hover { transform: rotate(0deg) scale(1.05); }
 
-/* Секции */
-.section-gallery { background-color: #333; color: #fff; }
-.section-map iframe { width: 100%; height: 450px; border:0; }
-
 /* Лесенка */
 .zigzag-block {
   display: flex;
@@ -117,8 +114,8 @@ ul.timing {
 }
 .zigzag-block.reverse { flex-direction: row-reverse; }
 .zigzag-img { width: 45%; border-radius: 10px; margin: 10px; transform: translateY(-20px); }
-.zigzag-text { width: 50%; color: #fff; text-align: left; margin: 10px; }
-.zigzag-text h2, .zigzag-text p { text-shadow: 1px 1px 4px rgba(0,0,0,0.7); }
+.zigzag-text { width: 50%; color: #000; text-align: left; margin: 10px; }
+.zigzag-text h2, .zigzag-text p { text-shadow: none; color:#000; }
 
 @media screen and (max-width: 768px){
   .zigzag-block, .zigzag-block.reverse { flex-direction: column; text-align: center; }
@@ -133,35 +130,26 @@ ul.timing {
 #schedule, #map { padding: 40px 20px; }
 #schedule .overlay, #map .overlay { padding: 30px 20px; }
 
-/* Волнистые разделители */
-section + section::before {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 50px;
-    background: white;
-    clip-path: polygon(0 0, 100% 30%, 100% 100%, 0 70%);
-    position: absolute;
-    top: -50px;
-}
+/* Убираем разделители */
+section + section::before { display:none; }
 </style>
 </head>
 <body>
 
 <!-- Главная секция -->
-<section id="home" style="background-image: url('phone.webp');">
+<section id="home">
   <div class="overlay">
     <h1>Даниил | Дарья</h1>
     <h2>18 июля 2026</h2>
-    <p>ДОРОГИЕ ГОСТИ!
+    <p>ДОРОГИЕ ГОСТИ!<br>
 Один день в этом году будет для нас особенным, и мы хотим провести его в кругу близких людей. С большим удовольствием приглашаем Вас на знаменательный праздник - нашу свадьбу.</p>
     <div id="countdown" style="font-size:36px; color:#ffd700; font-weight:bold; margin-top:20px;"></div>
   </div>
 </section>
 
-<!-- Тайминги (лесенка с пояснениями трансфера) -->
-<section id="schedule" style="background-image: url('phone.webp'); background-size: cover; background-position: center;">
-  <div class="overlay" style="background-color: rgba(0,0,0,0.3);">
+<!-- Тайминги -->
+<section id="schedule">
+  <div class="overlay">
     <div class="zigzag-block">
       <img src="timing.webp" alt="Тайминг" class="zigzag-img">
       <div class="zigzag-text">
@@ -172,16 +160,16 @@ section + section::before {
             <p>Мы организуем трансфер от станции метро «Партизанская», который доставит вас прямо к месту проведения мероприятия.</p>
           </li>
           <li>14:00 - 15:00 СБОР ГОСТЕЙ 
-          <p>Время пролетит незаметно за игристым и общением с другими гостями.</p>
+            <p>Время пролетит незаметно за игристым и общением с другими гостями.</p>
           </li>
           <li>16:00 ВЫЕЗДНАЯ ЦЕРЕМОНИЯ
             <p>Мы будем рады разделить с вами важный момент создания нашей семьи.</p>
           </li>
           <li>17:00 БАНКЕТ
-              <p>На праздничном ужине будет не только вкусно, но и очень весело. В программе вечера запланировано много танцев, развлечений и поздравлений.</p>
+            <p>На праздничном ужине будет не только вкусно, но и очень весело. В программе вечера запланировано много танцев, развлечений и поздравлений.</p>
           </li>
           <li>23:00 ЗАВЕРШЕНИЕ ПРАЗДНИКА
-              <p>Надеемся, этот праздник принесет вам массу положительных эмоций и запомнится на долгое время.</p>
+            <p>Надеемся, этот праздник принесет вам массу положительных эмоций и запомнится на долгое время.</p>
           </li>
         </ul>
       </div>
@@ -191,16 +179,16 @@ section + section::before {
 
 <!-- Чат гостей -->
 <section id="chat">
-  <div class="overlay" style="background-color:#fff; color:#000; text-align:left; position:relative;">
+  <div class="overlay" style="position:relative;">
     <h2>ЧАТ ДЛЯ ГОСТЕЙ</h2>
-    <p>Дорогие друзья, мы создали telegram чат нашего праздника, где можно будет узнать дополнительную информацию, поделиться фотографиями и видео со свадьбы, а также ближе познакомиться с гостями.</p>
+    <p>Дорогие гости, мы создали telegram чат нашего праздника, где можно будет узнать дополнительную информацию, поделиться фотографиями и видео со свадьбы, а также ближе познакомиться с гостями.</p>
     <a class="button button-chat" href="https://t.me/ваш_чат" style="position:absolute; right:20px; bottom:20px;">Перейти в чат</a>
   </div>
 </section>
 
 <!-- Место проведения -->
-<section id="map" class="section-map" style="background-image: url('file2.jpg'); background-size: cover; background-position: center;">
-  <div class="overlay" style="background-color: rgba(0,0,0,0.4);">
+<section id="map">
+  <div class="overlay">
     <div class="zigzag-block reverse">
       <div class="zigzag-text">
         <h2>Место проведения</h2>
@@ -213,8 +201,8 @@ section + section::before {
 </section>
 
 <!-- Галерея -->
-<section id="gallery" class="section-gallery">
-  <div class="overlay" style="background-color: rgba(0,0,0,0.2); padding:40px 20px;">
+<section id="gallery">
+  <div class="overlay">
     <div class="zigzag-block">
       <img src="gallery-cover.jpg" alt="Галерея" class="zigzag-img">
       <div class="zigzag-text">
@@ -232,13 +220,14 @@ section + section::before {
 </section>
 
 <!-- Пожелания -->
-<section id="wishes" style="background-color:#555;">
+<section id="wishes">
   <div class="overlay">
     <div class="zigzag-block">
       <img src="gifts.jpg" alt="Пожелания" class="zigzag-img">
       <div class="zigzag-text">
         <h2>ПОЖЕЛАНИЯ</h2>
-        <p>Мы будем рады любым вашим тёплым словам, пожеланиям и мыслям, которые вы хотели бы разделить с нами в этот день.</p>
+        <p>Просим Вас не дарить нам цветы - мы не успеем насладиться их красотой до отъезда. А вот бутылочке вина для нашей семейной винотеки будем очень рады!
+Если Вы хотите подарить ценный и нужный нам подарок, то просим уменьшить его габариты до размера почтового конверта.</p>
       </div>
     </div>
   </div>
