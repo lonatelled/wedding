@@ -8,25 +8,33 @@
 body {
     margin: 0;
     font-family: 'Georgia', serif;
-    background-color: #f0f0f0;
-    color: #333;
     text-align: center;
 }
+
+/* Общие стили секций */
 section {
     padding: 60px 20px;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    position: relative;
 }
-h1 {
-    font-size: 40px;
-    margin-bottom: 10px;
+
+/* Полупрозрачный overlay, чтобы текст читался на фоне */
+.overlay {
+    background-color: rgba(0,0,0,0.4);
+    padding: 60px 20px;
+    border-radius: 10px;
+    max-width: 1000px;
+    margin: 0 auto;
 }
-h2 {
-    margin-top: 40px;
-    font-size: 28px;
-}
-p {
-    font-size: 18px;
-    line-height: 1.5;
-}
+
+/* Заголовки и текст */
+h1 { font-size: 40px; margin-bottom: 10px; }
+h2 { font-size: 28px; margin-top: 30px; }
+p { font-size: 18px; line-height: 1.5; }
+
+/* Кнопки */
 .button {
     display: inline-block;
     margin: 15px;
@@ -37,14 +45,9 @@ p {
     border-radius: 5px;
     transition: background 0.3s;
 }
-.button:hover {
-    background: #333;
-}
-img {
-    max-width: 90%;
-    margin-top: 20px;
-    border-radius: 10px;
-}
+.button:hover { background: #333; }
+
+/* Галерея */
 .gallery {
     display: flex;
     flex-wrap: wrap;
@@ -55,6 +58,13 @@ img {
     width: 200px;
     height: auto;
     border-radius: 8px;
+    border: 2px solid #fff;
+}
+
+/* Отдельный стиль для чистого блока галереи */
+.section-gallery {
+    background-color: #333;
+    color: #fff;
 }
 </style>
 </head>
@@ -103,7 +113,7 @@ img {
     
 <!-- Галерея -->
 <section style="background-color:#333;">
-  <div class="overlay" style="background-color: rgba(1,0,1,0.1); padding:40px 20px;">
+  <div class="overlay" style="background-color: rgba(0,0,0,0.0); padding:40px 20px;">
     <h2>Галерея</h2>
     <div class="gallery">
       <img src="file1.jpg" alt="Фото 1">
