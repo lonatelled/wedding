@@ -18,9 +18,10 @@ section {
     background-position: center;
     color: white;
     position: relative;
+    margin-bottom: 0;
 }
 
-/* Полупрозрачный overlay, чтобы текст читался на фоне */
+/* Overlay */
 .overlay {
     background-color: rgba(0,0,0,0.4);
     padding: 60px 20px;
@@ -34,18 +35,29 @@ h1 { font-size: 40px; margin-bottom: 10px; }
 h2 { font-size: 28px; margin-top: 30px; }
 p { font-size: 18px; line-height: 1.5; }
 
+/* Списки тайминга */
+ul.timing {
+    list-style: none;
+    padding-left: 0;
+    text-align: left;
+    display: inline-block;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
 /* Кнопки */
 .button {
     display: inline-block;
     margin: 15px;
     padding: 12px 25px;
-    background: #555;
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
     transition: background 0.3s;
 }
-.button:hover { background: #333; }
+.button-chat { background: #1a73e8; }
+.button-form { background: #34a853; }
+.button:hover { background: #222; }
 
 /* Галерея */
 .gallery {
@@ -59,12 +71,23 @@ p { font-size: 18px; line-height: 1.5; }
     height: auto;
     border-radius: 8px;
     border: 2px solid #fff;
+    transition: transform 0.3s;
+}
+.gallery img:hover {
+    transform: scale(1.05);
 }
 
-/* Отдельный стиль для чистого блока галереи */
+/* Отдельный стиль для галереи */
 .section-gallery {
     background-color: #333;
     color: #fff;
+}
+
+/* Яндекс-Карта */
+.section-map iframe {
+    width: 100%;
+    height: 450px;
+    border: 0;
 }
 </style>
 </head>
@@ -73,47 +96,55 @@ p { font-size: 18px; line-height: 1.5; }
 <!-- Главная секция -->
 <section style="background-image: url('111.jpg');">
   <div class="overlay">
-    <h1>Даниил и Дарья</h1>
+    <h1>Даниил & Дарья</h1>
     <p>Мы счастливы пригласить вас на нашу свадьбу!</p>
     <h2>25 августа 2026</h2>
   </div>
 </section>
 
-<section>
-<h2>Тайминг</h2>
-<p>11:30-12:00 Трансфер от ст.метро «Партизанская» <br>
-14:00 Заезд гостей <br>
-15:00 Фуршет <br>
-16:00 Церемония/дарение подарков <br>
-17:00 Банкет <br>
-23:00 Конец мероприятия</p>
+<!-- Тайминг -->
+<section style="background-color:#444;">
+  <div class="overlay">
+    <h2>Тайминг</h2>
+    <ul class="timing">
+      <li>11:30-12:00 Трансфер от ст.метро «Партизанская»</li>
+      <li>14:00 Заезд гостей</li>
+      <li>15:00 Фуршет</li>
+      <li>16:00 Церемония / дарение подарков</li>
+      <li>17:00 Банкет</li>
+      <li>23:00 Конец мероприятия</li>
+    </ul>
+  </div>
 </section>
 
-<section>
-<h2>Чат гостей</h2>
-<a class="button" href="https://t.me/ваш_чат" target="_blank">Перейти в чат</a>
+<!-- Чат гостей -->
+<section style="background-color:#555;">
+  <div class="overlay">
+    <h2>Чат гостей</h2>
+    <a class="button button-chat" href="https://t.me/ваш_чат" target="_blank">Перейти в чат</a>
+  </div>
 </section>
 
-<section>
-<h2>Подтвердите присутствие</h2>
-<a class="button" href="https://forms.gle/ваша_форма" target="_blank">Заполнить анкету</a>
+<!-- Подтвердите присутствие -->
+<section style="background-color:#666;">
+  <div class="overlay">
+    <h2>Подтвердите присутствие</h2>
+    <a class="button button-form" href="https://forms.gle/ваша_форма" target="_blank">Заполнить анкету</a>
+  </div>
 </section>
     
-<!-- Секция "Место проведения" с фоном и Яндекс-Картой -->
-<section style="background-image: url('bg2.jpg'); background-size: cover; background-position: center;">
-  <div class="overlay" style="background-color: rgba(0,0,0,0.0); padding: 60px 20px;">
+<!-- Место проведения с Яндекс-Картой -->
+<section class="section-map" style="background-image: url('bg2.jpg'); background-size: cover; background-position: center;">
+  <div class="overlay" style="background-color: rgba(0,0,0,0.2);">
     <h2>Место проведения</h2>
     <p>Минская область, Солигорский район, Старобинский сельсовет, деревня Летенец, Школьная улица, 2Б</p>
-    <!-- Вставляем iframe Яндекс-Карты -->
-    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Ae60c609200addee4ac853a35e6ad03d385a15af465eb564b0fb860bb7da946ae&amp;
-        source=constructor" width="100%" height="450" frameborder="0">
-        </iframe>
+    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Ae60c609200addee4ac853a35e6ad03d385a15af465eb564b0fb860bb7da946ae&amp;source=constructor"></iframe>
   </div>
 </section>
     
 <!-- Галерея -->
-<section style="background-color:#333;">
-  <div class="overlay" style="background-color: rgba(0,0,0,0.0); padding:40px 20px;">
+<section class="section-gallery">
+  <div class="overlay" style="background-color: rgba(0,0,0,0.2); padding:40px 20px;">
     <h2>Галерея</h2>
     <div class="gallery">
       <img src="file1.jpg" alt="Фото 1">
