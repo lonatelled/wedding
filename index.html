@@ -9,9 +9,10 @@ body {
     margin: 0;
     font-family: 'Georgia', serif;
     text-align: center;
+    scroll-behavior: smooth;
 }
 
-/* Общие секции */
+/* Общие секции с начальной невидимостью и сдвигом */
 section {
     padding: 60px 20px;
     background-size: cover;
@@ -20,14 +21,14 @@ section {
     position: relative;
     margin-bottom: 0;
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(50px) scale(0.95);
     transition: opacity 1s ease, transform 1s ease;
 }
 
-/* Появление при скролле */
+/* Показываем секцию при скролле */
 section.show {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
 }
 
 .overlay {
@@ -37,6 +38,18 @@ section.show {
     max-width: 1000px;
     margin: 0 auto;
 }
+
+/* Анимация поочередного появления элементов overlay */
+.overlay > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease;
+}
+
+section.show .overlay > *:nth-child(1) { opacity:1; transform:translateY(0); transition-delay:0.1s; }
+section.show .overlay > *:nth-child(2) { opacity:1; transform:translateY(0); transition-delay:0.3s; }
+section.show .overlay > *:nth-child(3) { opacity:1; transform:translateY(0); transition-delay:0.5s; }
+section.show .overlay > *:nth-child(4) { opacity:1; transform:translateY(0); transition-delay:0.7s; }
 
 /* Заголовки и текст */
 h1 { font-size: 40px; margin-bottom: 10px; }
@@ -93,7 +106,7 @@ ul.timing {
 <body>
 
 <!-- Главная секция -->
-<section style="background-image: url('111.jpg');">
+<section id="home" style="background-image: url('111.jpg');">
   <div class="overlay">
     <h1>Даниил & Дарья</h1>
     <p>Мы счастливы пригласить вас на нашу свадьбу!</p>
@@ -102,7 +115,7 @@ ul.timing {
 </section>
 
 <!-- Таймер -->
-<section style="background-color:#555;">
+<section id="timer" style="background-color:#555;">
   <div class="overlay">
     <h2>До свадьбы осталось:</h2>
     <div id="countdown" style="font-size:36px; color:#ffd700; font-weight:bold;"></div>
@@ -110,7 +123,7 @@ ul.timing {
 </section>
 
 <!-- Тайминг -->
-<section style="background-color:#444;">
+<section id="schedule" style="background-color:#444;">
   <div class="overlay">
     <h2>Тайминг</h2>
     <ul class="timing">
@@ -125,23 +138,23 @@ ul.timing {
 </section>
 
 <!-- Чат гостей -->
-<section style="background-color:#555;">
+<section id="chat" style="background-color:#555;">
   <div class="overlay">
     <h2>Чат гостей</h2>
-    <a class="button button-chat" href="https://t.me/ваш_чат" target="_blank">Перейти в чат</a>
+    <a class="button button-chat" href="https://t.me/ваш_чат">Перейти в чат</a>
   </div>
 </section>
 
 <!-- Подтвердите присутствие -->
-<section style="background-color:#666;">
+<section id="rsvp" style="background-color:#666;">
   <div class="overlay">
     <h2>Подтвердите присутствие</h2>
-    <a class="button button-form" href="https://forms.gle/ваша_форма" target="_blank">Заполнить анкету</a>
+    <a class="button button-form" href="https://forms.gle/ваша_форма">Заполнить анкету</a>
   </div>
 </section>
 
 <!-- Место проведения с Яндекс-Картой -->
-<section class="section-map" style="background-image: url('bg2.jpg'); background-size: cover; background-position: center;">
+<section id="map" class="section-map" style="background-image: url('bg2.jpg'); background-size: cover; background-position: center;">
   <div class="overlay" style="background-color: rgba(0,0,0,0.4);">
     <h2>Место проведения</h2>
     <p>Минская область, Солигорский район, деревня Летенец, Школьная улица, 2Б</p>
@@ -150,7 +163,7 @@ ul.timing {
 </section>
 
 <!-- Галерея -->
-<section class="section-gallery">
+<section id="gallery" class="section-gallery">
   <div class="overlay" style="background-color: rgba(0,0,0,0.2); padding:40px 20px;">
     <h2>Галерея</h2>
     <div class="gallery">
@@ -163,7 +176,7 @@ ul.timing {
 </section>
 
 <!-- Наша история -->
-<section style="background-color:#777;">
+<section id="story" style="background-color:#777;">
   <div class="overlay">
     <h2>Наша история</h2>
     <p>Мы познакомились в 2018 году, и с тех пор пережили множество удивительных моментов вместе…</p>
@@ -172,16 +185,16 @@ ul.timing {
 </section>
 
 <!-- Подарки -->
-<section style="background-color:#555;">
+<section id="gifts" style="background-color:#555;">
   <div class="overlay">
     <h2>Подарки</h2>
     <p>Если хотите сделать подарок, вот наш список желаний и реквизиты:</p>
-    <a class="button button-gifts" href="https://example.com/gifts" target="_blank">Список подарков</a>
+    <a class="button button-gifts" href="https://example.com/gifts">Список подарков</a>
   </div>
 </section>
 
 <!-- FAQ -->
-<section style="background-color:#666;">
+<section id="faq" style="background-color:#666;">
   <div class="overlay">
     <h2>FAQ</h2>
     <p><strong>Дресс-код:</strong> Элегантная классика в пастельных тонах</p>
