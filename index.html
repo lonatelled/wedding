@@ -121,9 +121,16 @@ ul.timing {
 #chat .overlay, #rsvp .overlay {
     padding: 30px 20px;
 }
-
 #chat, #rsvp {
     padding: 40px 20px;
+}
+
+/* Уменьшенная высота для Тайминга и Локации */
+#schedule, #map {
+    padding: 40px 20px;
+}
+#schedule .overlay, #map .overlay {
+    padding: 30px 20px;
 }
 </style>
 </head>
@@ -134,7 +141,7 @@ ul.timing {
   <div class="overlay">
     <h1>Даниил & Дарья</h1>
     <p>Мы счастливы пригласить вас на нашу свадьбу!</p>
-    <h2>18 июля 2026</h2>
+    <h2>25 августа 2026</h2>
   </div>
 </section>
 
@@ -146,9 +153,9 @@ ul.timing {
   </div>
 </section>
 
-<!-- Тайминг (лесенка: картинка слева) -->
-<section id="schedule" style="background-image: url('file4.jpg'); background-color:#444; background-position: center">
-  <div class="overlay">
+<!-- Тайминг (лесенка: картинка слева, с фоном) -->
+<section id="schedule" style="background-image: url('file3.jpg'); background-size: cover; background-position: center;">
+  <div class="overlay" style="background-color: rgba(0,0,0,0.3);">
     <div class="zigzag-block">
       <img src="file3.jpg" alt="Тайминг" class="zigzag-img">
       <div class="zigzag-text">
@@ -182,7 +189,7 @@ ul.timing {
   </div>
 </section>
 
-<!-- Место проведения (лесенка: картинка справа) -->
+<!-- Место проведения (лесенка: картинка справа, с фоном) -->
 <section id="map" class="section-map" style="background-image: url('file2.jpg'); background-size: cover; background-position: center;">
   <div class="overlay" style="background-color: rgba(0,0,0,0.4);">
     <div class="zigzag-block reverse">
